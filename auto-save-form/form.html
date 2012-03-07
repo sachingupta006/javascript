@@ -1,83 +1,22 @@
-{% extends "base.html" %}
-
-	{% block title %}
-        {{title}}   
-	{% endblock %}
-	
-	{% block extrahead %}
-		<link rel="stylesheet" href="{{ STATIC_URL }}blog/blog.css" type="text/css" media="screen">		
-		<script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/tiny_mce.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/tinymceConfig.js"></script>	
-		<script type="text/javascript" src="{{ STATIC_URL }}blog/blog.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}blog/save_blog.js"></script>
-		
-		<link type="text/css" href="{{ STATIC_URL }}css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" /> 
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-
-                 
-		{{form.media}}
-		
-		{% if preview %}
-			<script>
-				var current_link = location.href;
-				preview_link = current_link.replace("/blog/edit/", "/blog/preview/");
-				window.open(preview_link,'preview_tab');
-			</script>
-		{% endif %}
-		
-	{% endblock %}
-	
-	{% block body %}
-
-		<div id="contentDiv" style="border-left:none; margin-left:7%;">
                   
-			<form id="blog_form" action="" method="post">
-				{% csrf_token %}
-				
-				{{ form.non_field_errors }}
-				
-				<div class="fieldWrapper">
-					{{ form.title.errors }}
-					{{ form.title }}
-					<div style="float:right;">
-						<input id="blog_submits" type="submit" name ="publish" value="Update" class="niceButton blurOnFocus"/>
-						<a href="/blog/save_ajax/{{blog_id}}/" id="not_button" class="save_button niceButton" tabindex="2005"> Save </a>
-						<a href="/blog/save_ajax/{{blog_id}}/" id="not_button" class="preview_button niceButton" tabindex="2006"> Preview </a>
-					</div>
-				</div>
-				
-				<br/>
-				<div class="fieldWrapper">
-					{{ form.text.errors }}
-					{{ form.text }}
-				</div>
-				
-				<br/>
-				<div class="fieldWrapper">
-					<div style="float:left">
-						{{ form.tags.errors }}
-						<label for="id_tags">Tags</label>
-						<br/>
-						{{ form.tags }}
-					</div>
-					
-					<div style="float:right">
-						{{ form.enable_comments.errors }}
-						<label for="id_cc_myself">Enable Comments</label>
-						{{ form.enable_comments }}
-					</div>
-					
-				</div>
-				
-				<div class="fieldWrapper">
-					
-				</div>
-			</form>	
-                     
-                              
-		
-		</div>
-	
-{% endblock %}
+  <form id="form" action="" method="post">
 
-	  
+  	{% csrf_token %}
+  	
+  	<div class="fieldWrapper">
+  		{{ form.title }}
+    </div>
+  	
+  	<div class="fieldWrapper">
+  		{{ form.text }}
+  	</div>
+  	
+  	<div class="fieldWrapper">
+  		{{ form.tags }}
+    </div>
+  		
+    <div >
+  		<a href="/ajax/save_form/{{object_id}}/" class="save_button niceButton"> Save </a>
+  	</div>
+
+  </form>	

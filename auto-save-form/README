@@ -1,0 +1,5 @@
+I use django as the developement framework, so the form.html contains a snippet of the django template. I have given the form.html just for the reference of the class used in the javascript. 
+
+The form that I am using here uses, TinyMCE to provide rich text editing options. So whenever I save the contents of the form I also have to save the contents of the text editor instance.
+
+The auto-save that I have implemented runs periodically after 10 sec, however when the form page is not being viewed then no ajax calls are made. A furter optimization can be done to see if anything was changed in last 10 sec, but that would require some more logic. I will add that later
